@@ -1,3 +1,5 @@
+#!/bin/bash
+
 tar xvzf ncurses-5.9.tar.gz 
 cd ncurses-5.9 
 cd ncurses 
