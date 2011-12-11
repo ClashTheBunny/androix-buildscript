@@ -3,15 +3,13 @@
 tar xvzf ncurses-5.9.tar.gz
 cd ncurses-5.9
 cd ncurses
-CC=agcc ../ncurses-5.9/configure --host arm-eabi --prefix=/ndk/androix/
-usr
+CC=agcc ../ncurses-5.9/configure --host arm-eabi --prefix=/ndk/androix/usr
 make -k install
 cd ..
 ar xvjf util-macros-1.14.0.tar.bz2
 mkdir util_macros
 cd util_macros
-../util-macros-1.14.0/autogen.sh --host arm-eabi --prefix=/ndk/androix/
-usr
+../util-macros-1.14.0/autogen.sh --host arm-eabi --prefix=/ndk/androix/usr
 make install
 cd ..
 mkdir xproto
