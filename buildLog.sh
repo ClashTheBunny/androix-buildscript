@@ -1,6 +1,16 @@
 #!/bin/bash
 
+NDK="/opt/android-ndk-r7"
+PLATFORM="14"
+GCCVERSION="4.4.3"
 TARGET_HOST="arm-linux-androideabi"
+ALIB="$NDK/platforms/android-$PLATFORM/arch-arm"
+PREBUILT="$NDK/toolchains/$TARGET-$GCCVERSION/prebuilt/linux-x86"
+TOOLCHAIN="$NDK/toolchains/$TARGET-$GCCVERSION"
+LDSCRIPTS="$PREBUILT/$TARGET/lib/ldscripts/"
+
+ARMELF_LDSCRIPTS="$PREBUILT/$TARGET/lib/ldscripts/armelf_linux_eabi.xsc"
+INCLUDE_PATH="-I$NDK/platforms/android-$PLATFORM/arch-arm/usr/include"
 
 [[ -f ncurses-5.9.tar.gz ]] || wget http://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz
 [[ -d ncurses-5.9 ]] && rm -rf ncurses-5.9
