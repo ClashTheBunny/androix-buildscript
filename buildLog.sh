@@ -4,8 +4,7 @@
 [[ -d ncurses-5.9 ]] && rm -rf ncurses-5.9
 tar xvzf ncurses-5.9.tar.gz
 cd ncurses-5.9
-cd ncurses
-CC=agcc ../ncurses-5.9/configure --host arm-eabi --prefix=/ndk/androix/usr
+CC=agcc.pl ../ncurses-5.9/configure --host arm-eabi --prefix=/ndk/androix/usr
 make -k install
 cd ..
 tar xvjf util-macros-1.14.0.tar.bz2
@@ -43,7 +42,7 @@ make install
 cd ..
 mkdir xcb
 cd xcb
-CC=agcc CFLAGS="-I/ndk/androix/usr/include" LDFLAGS="-L/ndk/sysroot/
+CC=agcc.pl CFLAGS="-I/ndk/androix/usr/include" LDFLAGS="-L/ndk/sysroot/
 usr/lib/ -L/ndk/sysroot/usr/lib/static -L/ndk/androix/usr/lib" PKG_CONFIG_PATH="/
 ndk/androix/usr/lib/pkgconfig:/ndk/androix/usr/share/pkgconfig" ../libxcb-1.7/
 autogen.sh --host arm-eabi --prefix=/ndk/androix/usr
@@ -67,7 +66,7 @@ cd ..
 tar xvzf tmzt-androix-lib-libX11-390b7e5.tar.gz
 mkdir libX11
 cd libX11
-CC=agcc CFLAGS="-g -I/ndk/androix/usr/include -DISC -DUSE_XMBTOWC -
+CC=agcc.pl CFLAGS="-g -I/ndk/androix/usr/include -DISC -DUSE_XMBTOWC -
 DX_LOCALE -DWORD64" LDFLAGS="-L/ndk/sysroot/usr/lib/ -L/ndk/sysroot/usr/lib/static
 -L/ndk/androix/usr/lib" PKG_CONFIG_PATH="/ndk/androix/usr/lib/pkgconfig:/ndk/
 androix/usr/share/pkgconfig" ../tmzt-androix-lib-libX11-390b7e5/autogen.sh --
@@ -76,14 +75,14 @@ make install
 cd ..
 mkdir xkbfile
 cd xkbfile
-CC=agcc CFLAGS="-I/ndk/androix/usr/include -fno-short-enums"
+CC=agcc.pl CFLAGS="-I/ndk/androix/usr/include -fno-short-enums"
 PKG_CONFIG_PATH="/ndk/androix/usr/lib/pkgconfig:/ndk/androix/usr/share/pkgconfig" ../
 libxkbfile-1.0.7/configure --host arm-eabi --prefix=/ndk/androix/usr
 make install
 cd ..
 mkdir xkbcomp
 cd xkbcomp
-CC=agcc CFLAGS="-I/ndk/androix/usr/include -fno-short-enums"
+CC=agcc.pl CFLAGS="-I/ndk/androix/usr/include -fno-short-enums"
 PKG_CONFIG_PATH="/ndk/androix/usr/lib/pkgconfig:/ndk/androix/usr/share/pkgconfig" ../
 xkbcomp-1.2.0/configure --host arm-eabi --prefix=/ndk/androix/usr
 CC="$ARM_GCC" CFLAGS="-W -Wall -O0 -g3   -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I/ndk/androix/include -I/ndk/androix/usr/include -nostdlib -fPIC -DANDROID -I/ndk/androix/usr/include -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,/home/webbb/NDK/android-ndk-r5b/toolchains/arm-eabi-4.4.0/prebuilt/linux-x86/arm-eabi/lib/ldscripts/armelf.x -Wl,-rpath-link=/ndk/androix/usr/lib -L/ndk/androix/usr/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" PKG_CONFIG_PATH="/ndk/androix/usr/lib/pkgconfig" ../xtrans-1.2.6/configure --host arm-eabi --prefix=/ndk/androix/usr
@@ -209,7 +208,7 @@ make install
 cd ..
 mkdir androix
 cd androix
-CC="agcc" CFLAGS="-I/ndk/androix/include -I/ndk/androix/usr/include -DANDROID -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-L/ndk/androix/usr/lib"PKG_CONFIG_PATH="/ndk/androix/usr/lib/pkgconfig:/ndk/androix/usr/share/pkgconfig" ../androix-xserver/autogen.sh --host arm-eabi --prefix=/ndk/androix/usr --prefix=/ndk/androix/usr -disable-xorg --disable-glx --disable-xvfb --disable-xinerama --disable-xnest --disable-mitshm --enable-android --with-xkb-path="/data/data/net.homeip.ofn.androix/usr/share/X11/xkb" --with-xkb-output="/data/data/net.homeip.ofn.androix/usr/share/X11/xkb/compiled" --with-default-font-path="/data/data/net.homeip.ofn.androix/usr/share/fonts/X11" --with-xkb-bin-directory="/data/data/net.homeip.ofn.androix/usr/bin" --disable-config-udev
+CC="agcc.pl" CFLAGS="-I/ndk/androix/include -I/ndk/androix/usr/include -DANDROID -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-L/ndk/androix/usr/lib"PKG_CONFIG_PATH="/ndk/androix/usr/lib/pkgconfig:/ndk/androix/usr/share/pkgconfig" ../androix-xserver/autogen.sh --host arm-eabi --prefix=/ndk/androix/usr --prefix=/ndk/androix/usr -disable-xorg --disable-glx --disable-xvfb --disable-xinerama --disable-xnest --disable-mitshm --enable-android --with-xkb-path="/data/data/net.homeip.ofn.androix/usr/share/X11/xkb" --with-xkb-output="/data/data/net.homeip.ofn.androix/usr/share/X11/xkb/compiled" --with-default-font-path="/data/data/net.homeip.ofn.androix/usr/share/fonts/X11" --with-xkb-bin-directory="/data/data/net.homeip.ofn.androix/usr/bin" --disable-config-udev
 make
 cd ..
 cd tmzt-androix-xserver-051a638/hw/android
