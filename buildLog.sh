@@ -7,6 +7,7 @@ cd ncurses-5.9
 CC=agcc.pl ../ncurses-5.9/configure --host arm-eabi --prefix=/ndk/androix/usr
 make -k install
 cd ..
+wget http://www.x.org/releases/individual/util/util-macros-1.14.0.tar.bz2
 tar xvjf util-macros-1.14.0.tar.bz2
 mkdir util_macros
 cd util_macros
