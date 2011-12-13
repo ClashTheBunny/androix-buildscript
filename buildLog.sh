@@ -58,10 +58,7 @@ make install
 cd ..
 mkdir xcb
 cd xcb
-CC=agcc.pl CFLAGS="-I$INSTALL_PREFIX/include" LDFLAGS="-L/ndk/sysroot/
-usr/lib/ -L/ndk/sysroot/usr/lib/static -L$INSTALL_PREFIX/lib" PKG_CONFIG_PATH="/
-ndk/androix/usr/lib/pkgconfig:$INSTALL_PREFIX/share/pkgconfig" ../libxcb-1.7/
-autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
+CC=agcc.pl CFLAGS="-I$INSTALL_PREFIX/include" LDFLAGS="-L/ndk/sysroot/usr/lib/ -L/ndk/sysroot/usr/lib/static -L$INSTALL_PREFIX/lib" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig:$INSTALL_PREFIX/share/pkgconfig" ../libxcb-1.7/autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 make install
 cd ..
 mkdir xextproto
@@ -92,15 +89,12 @@ cd ..
 mkdir xkbfile
 cd xkbfile
 CC=agcc.pl CFLAGS="-I$INSTALL_PREFIX/include -fno-short-enums"
-PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig:$INSTALL_PREFIX/share/pkgconfig" ../
-libxkbfile-1.0.7/configure --host $TARGET_HOST --prefix=$INSTALL_PREFIX
+PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig:$INSTALL_PREFIX/share/pkgconfig" ../libxkbfile-1.0.7/configure --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 make install
 cd ..
 mkdir xkbcomp
 cd xkbcomp
-CC=agcc.pl CFLAGS="-I$INSTALL_PREFIX/include -fno-short-enums"
-PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig:$INSTALL_PREFIX/share/pkgconfig" ../
-xkbcomp-1.2.0/configure --host $TARGET_HOST --prefix=$INSTALL_PREFIX
+CC=agcc.pl CFLAGS="-I$INSTALL_PREFIX/include -fno-short-enums" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig:$INSTALL_PREFIX/share/pkgconfig" ../xkbcomp-1.2.0/configure --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 CC="$ARM_GCC" CFLAGS="-W -Wall -O0 -g3   -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I/ndk/androix/include -I$INSTALL_PREFIX/include -nostdlib -fPIC -DANDROID -I$INSTALL_PREFIX/include -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,/home/webbb/NDK/android-ndk-r5b/toolchains/arm-eabi-4.4.0/prebuilt/linux-x86/arm-eabi/lib/ldscripts/armelf.x -Wl,-rpath-link=$INSTALL_PREFIX/lib -L$INSTALL_PREFIX/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" ../xtrans-1.2.6/configure --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 make install
 cd ..
@@ -117,71 +111,63 @@ cd libdrm
 CC="$ARM_GCC" CFLAGS="-W -Wall -O0 -g3   -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I/ndk/androix/include -I$INSTALL_PREFIX/include -nostdlib -fPIC -DANDROID -I$INSTALL_PREFIX/include -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,/home/webbb/NDK/android-ndk-r5b/toolchains/arm-eabi-4.4.0/prebuilt/linux-x86/arm-eabi/lib/ldscripts/armelf.x -Wl,-rpath-link=$INSTALL_PREFIX/lib -L$INSTALL_PREFIX/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" ../libdrm-2.4.25/configure --host $TARGET_HOST --prefix=/ndk/androix/us
 make install
 cd ..
-wget http://cgit.freedesktop.org/xorg/proto/fixesproto/snapshot/fixesproto...
-tar.bz2
+wget http://cgit.freedesktop.org/xorg/proto/fixesproto/snapshot/fixesproto-5.0.tar.bz2
 tar xvjf fixesproto-5.0.tar.bz2
 mkdir fixesproto
 cd fixesproto
 CC="$ARM_GCC" CFLAGS="-W -Wall -O0 -g3   -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I/ndk/androix/include -I$INSTALL_PREFIX/include -nostdlib -fPIC -DANDROID -I$INSTALL_PREFIX/include -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,/home/webbb/NDK/android-ndk-r5b/toolchains/arm-eabi-4.4.0/prebuilt/linux-x86/arm-eabi/lib/ldscripts/armelf.x -Wl,-rpath-link=$INSTALL_PREFIX/lib -L$INSTALL_PREFIX/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" ../fixesproto-5.0/autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 make install
 cd ..
-wget http://cgit.freedesktop.org/xorg/proto/damageproto/snapshot/damagepro...
-2.1.tar.bz2
+wget http://cgit.freedesktop.org/xorg/proto/damageproto/snapshot/damagepro-1.2.1.tar.bz2
 tar xvjf damageproto-1.2.1.tar.bz2
 mkdir damageproto
 cd damageproto
 CC="$ARM_GCC" CFLAGS="-W -Wall -O0 -g3   -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I/ndk/androix/include -I$INSTALL_PREFIX/include -nostdlib -fPIC -DANDROID -I$INSTALL_PREFIX/include -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,/home/webbb/NDK/android-ndk-r5b/toolchains/arm-eabi-4.4.0/prebuilt/linux-x86/arm-eabi/lib/ldscripts/armelf.x -Wl,-rpath-link=$INSTALL_PREFIX/lib -L$INSTALL_PREFIX/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" ../damageproto-1.2.1/autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 make install
 cd ..
-wget http://cgit.freedesktop.org/xorg/proto/xcmiscproto/snapshot/xcmiscpro...
-2.1.tar.bz2
+wget http://cgit.freedesktop.org/xorg/proto/xcmiscproto/snapshot/xcmiscpro-1.2.1.tar.bz2
 tar xvjf xcmiscproto-1.2.1.tar.bz2
 mkdir xcmiscproto
 cd xcmiscproto
 CC="$ARM_GCC" CFLAGS="-W -Wall -O0 -g3   -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I/ndk/androix/include -I$INSTALL_PREFIX/include -nostdlib -fPIC -DANDROID -I$INSTALL_PREFIX/include -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,/home/webbb/NDK/android-ndk-r5b/toolchains/arm-eabi-4.4.0/prebuilt/linux-x86/arm-eabi/lib/ldscripts/armelf.x -Wl,-rpath-link=$INSTALL_PREFIX/lib -L$INSTALL_PREFIX/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" ../xcmiscproto-1.2.1/autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 make install
 cd ..
-wget http://cgit.freedesktop.org/xorg/proto/bigreqsproto/snapshot/bigreqsp...
-1.1.1.tar.bz2
+wget http://cgit.freedesktop.org/xorg/proto/bigreqsproto/snapshot/bigreqsproto-1.1.1.tar.bz2
 tar xvjf bigreqsproto-1.1.1.tar.bz2
 mkdir bigreqsproto
 cd bigreqsproto
 CC="$ARM_GCC" CFLAGS="-W -Wall -O0 -g3   -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I/ndk/androix/include -I$INSTALL_PREFIX/include -nostdlib -fPIC -DANDROID -I$INSTALL_PREFIX/include -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,/home/webbb/NDK/android-ndk-r5b/toolchains/arm-eabi-4.4.0/prebuilt/linux-x86/arm-eabi/lib/ldscripts/armelf.x -Wl,-rpath-link=$INSTALL_PREFIX/lib -L$INSTALL_PREFIX/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" ../bigreqsproto-1.1.1/autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 make install
 cd ..
-wget http://cgit.freedesktop.org/xorg/proto/compositeproto/snapshot/compos...
-oto-0.4.2.tar.bz2
+wget http://cgit.freedesktop.org/xorg/proto/compositeproto/snapshot/compositeproto-0.4.2.tar.bz2
 tar xvjf compositeproto-0.4.2.tar.bz2
 mkdir compositeproto
 cd compositeproto
 CC="$ARM_GCC" CFLAGS="-W -Wall -O0 -g3   -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I/ndk/androix/include -I$INSTALL_PREFIX/include -nostdlib -fPIC -DANDROID -I$INSTALL_PREFIX/include -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,/home/webbb/NDK/android-ndk-r5b/toolchains/arm-eabi-4.4.0/prebuilt/linux-x86/arm-eabi/lib/ldscripts/armelf.x -Wl,-rpath-link=$INSTALL_PREFIX/lib -L$INSTALL_PREFIX/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" ../compositeproto-0.4.2/autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 make install
 cd ..
-wget http://cgit.freedesktop.org/xorg/proto/recordproto/snapshot/recordpro...
-14.1.tar.bz2
+wget http://cgit.freedesktop.org/xorg/proto/recordproto/snapshot/recordproto-1.14.1.tar.bz2
 tar xvjf recordproto-1.14.1.tar.bz2
 mkdir recordproto
 cd recordproto
 CC="$ARM_GCC" CFLAGS="-W -Wall -O0 -g3   -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I/ndk/androix/include -I$INSTALL_PREFIX/include -nostdlib -fPIC -DANDROID -I$INSTALL_PREFIX/include -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,/home/webbb/NDK/android-ndk-r5b/toolchains/arm-eabi-4.4.0/prebuilt/linux-x86/arm-eabi/lib/ldscripts/armelf.x -Wl,-rpath-link=$INSTALL_PREFIX/lib -L$INSTALL_PREFIX/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" ../recordproto-1.14.1/autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 make install
 cd ..
-wget http://cgit.freedesktop.org/xorg/proto/scrnsaverproto/snapshot/scrnsa...
-oto-1.2.1.tar.bz2
+wget http://cgit.freedesktop.org/xorg/proto/scrnsaverproto/snapshot/scrnsaverprooto-1.2.1.tar.bz2
 tar xvjf scrnsaverproto-1.2.1.tar.bz2
 mkdir scrnsaverproto
 cd scrnsaverproto
 CC="$ARM_GCC" CFLAGS="-W -Wall -O0 -g3   -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I/ndk/androix/include -I$INSTALL_PREFIX/include -nostdlib -fPIC -DANDROID -I$INSTALL_PREFIX/include -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,/home/webbb/NDK/android-ndk-r5b/toolchains/arm-eabi-4.4.0/prebuilt/linux-x86/arm-eabi/lib/ldscripts/armelf.x -Wl,-rpath-link=$INSTALL_PREFIX/lib -L$INSTALL_PREFIX/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" ../scrnsaverproto-1.2.1/autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 make install
 cd ..
-wget http://cgit.freedesktop.org/xorg/proto/resourceproto/snapshot/resourc...
-o-1.1.1.tar.bz2
+wget http://cgit.freedesktop.org/xorg/proto/resourceproto/snapshot/resourceproto-1.1.1.tar.bz2
 tar xvjf resourceproto-1.1.1.tar.bz2
 mkdir resourceproto
 cd resourceproto
 CC="$ARM_GCC" CFLAGS="-W -Wall -O0 -g3   -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I/ndk/androix/include -I$INSTALL_PREFIX/include -nostdlib -fPIC -DANDROID -I$INSTALL_PREFIX/include -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,/home/webbb/NDK/android-ndk-r5b/toolchains/arm-eabi-4.4.0/prebuilt/linux-x86/arm-eabi/lib/ldscripts/armelf.x -Wl,-rpath-link=$INSTALL_PREFIX/lib -L$INSTALL_PREFIX/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" ../resourceproto-1.1.1/autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 make install
 cd ..
-wget http://download.savannah.gnu.org/releases/freetype/freetype-2.4.4.tar...
+wget http://download.savannah.gnu.org/releases/freetype/freetype-2.4.4.tar.bz2
 tar xvjf freetype-2.4.4.tar.bz2
 mkdir freetype
 cd freetype
@@ -189,7 +175,7 @@ CC="$ARM_GCC" CFLAGS="-W -Wall -O0 -g3   -Wstrict-prototypes -pipe -std=gnu99 -f
 make install
 cd ..
 wget http://www.paldo.org/paldo/sources/fontenc/libfontenc-1.1.0.tar.bz2
-tar xvjf libfontenc-1.1.0.taz2
+tar xvjf libfontenc-1.1.0.tar.bz2
 mkdir fontenc
 cd fontenc
 CC="$ARM_GCC" CFLAGS="-W -Wall -O0 -g3   -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I/ndk/androix/include -I$INSTALL_PREFIX/include -nostdlib -fPIC -DANDROID -I$INSTALL_PREFIX/include -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,/home/webbb/NDK/android-ndk-r5b/toolchains/arm-eabi-4.4.0/prebuilt/linux-x86/arm-eabi/lib/ldscripts/armelf.x -Wl,-rpath-link=$INSTALL_PREFIX/lib -L$INSTALL_PREFIX/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" ../libfontenc-1.1.0/configure --host $TARGET_HOST --prefix=$INSTALL_PREFIX
