@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[[ -f ncurses-5.9.tar.gz ]] || wget http://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz
+[[ -d ncurses-5.9 ]] && rm -rf ncurses-5.9
 tar xvzf ncurses-5.9.tar.gz
 cd ncurses-5.9
 cd ncurses
