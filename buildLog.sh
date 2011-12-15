@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export NDK_ROOT=/opt/android-ndk-r7/
+export NDK_TARGET=arm
+export NDK_PLATFORM=9
 NDK="/opt/android-ndk-r7"
 PLATFORM="14"
 GCCVERSION="4.4.3"
@@ -14,19 +17,21 @@ INCLUDE_PATH="-I$NDK/platforms/android-$PLATFORM/arch-arm/usr/include"
 
 INSTALL_PREFIX="/home/rmason/androix/usr/"
 
-[[ -f ncurses-5.9.tar.gz ]] || wget http://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz
-[[ -d ncurses-5.9 ]] || tar xvzf ncurses-5.9.tar.gz
-[[ -d ncurses ]] && rm -rf ncurses
-mkdir ncurses
-cd ncurses
-CC=agcc.pl ../ncurses-5.9/configure --host $TARGET_HOST --prefix=$INSTALL_PREFIX
-make -k install || exit
-cd ..
+#[[ -f ncurses-5.9.tar.gz ]] || wget http://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz
+#[[ -d ncurses-5.9 ]] || tar xvzf ncurses-5.9.tar.gz
+#[[ -d ncurses ]] && rm -rf ncurses
+#mkdir ncurses
+#cd ncurses
+#CC=agcc.pl ../ncurses-5.9/configure --host $TARGET_HOST --prefix=$INSTALL_PREFIX
+#sed -i -e "s/#define HAVE_LOCALE_H 1/#define HAVE_LOCALE_H 0/g" include/ncurses_cfg.h 
+#sed -i -e "s/iostream.h/iostream/g" ../ncurses-5.9/c++/etip.h.in ./ncurses/c++/etip.h
+#make -k install || exit
+#cd ..
 [[ -f util-macros-1.14.0.tar.bz2 ]] || wget http://www.x.org/releases/individual/util/util-macros-1.14.0.tar.bz2
 tar xvjf util-macros-1.14.0.tar.bz2
-mkdir util_macros
-cd util_macros
-../util-macros-1.14.0/autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
+mkdir util-macros
+cd util-macros
+../util-macros-1.14.0/configure --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 make install || exit
 cd ..
 mkdir xproto
@@ -210,4 +215,4 @@ CC="agcc.pl" CFLAGS="-I/ndk/androix/include -I$INSTALL_PREFIX/include -DANDROID 
 make
 cd ..
 cd tmzt-androix-xserver-051a638/hw/android
-/home/webbb/NDK/android-ndk-r5b/ndk-build
+$NDK/ndk-build
