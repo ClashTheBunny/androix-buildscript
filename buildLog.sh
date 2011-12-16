@@ -42,7 +42,7 @@ do
 done
 
 cd xserver
-./autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX -disable-xorg --disable-glx --disable-xvfb --disable-xinerama --disable-xnest --disable-mitshm --enable-android --with-xkb-path="/data/net.homeip.ofn.androix/usr/share/X11/xkb" --with-xkb-output="/data/net.homeip.ofn.androix/usr/share/X11/xkb/compiled" --with-default-font-path="/data/net.homeip.ofn.androix/usr/share/fonts/X11" --with-xkb-bin-directory="/data/net.homeip.ofn.androix/usr/bin" --disable-config-udev
+./autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX -disable-xorg --disable-glx --disable-xvfb --disable-xinerama --disable-xnest --disable-mitshm --enable-android --with-xkb-path="/data/data/net.homeip.ofn.androix/usr/share/X11/xkb" --with-xkb-output="/data/data/net.homeip.ofn.androix/usr/share/X11/xkb/compiled" --with-default-font-path="/data/data/net.homeip.ofn.androix/usr/share/fonts/X11" --with-xkb-bin-directory="/data/data/net.homeip.ofn.androix/usr/bin" --disable-config-udev
 make
 cd hw/android
 $NDK_ROOT/ndk-build
