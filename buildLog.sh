@@ -4,10 +4,12 @@ export NDK_TARGET=arm
 export NDK_PLATFORM=9
 export TARGET_HOST="arm-linux-androideabi"
 export INSTALL_PREFIX="$HOME/androix/usr"
-export PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" 
 export CC=droid-gcc
 export LD=droid-ld
 export RANLIB=droid-ranlib
+export CFLAGS="-I$INSTALL_PREFIX/usr/include"
+export LDFLAGS="-L$INSTALL_PREFIX/usr/lib"
+export PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" 
 
 if [[ "x$(which droid-gcc || echo nope)" == "xnope" ]]; then
  git clone https://github.com/ClashTheBunny/droid-wrapper.git
