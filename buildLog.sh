@@ -3,7 +3,7 @@ export NDK_ROOT=/opt/android-ndk-r7/
 export NDK_TARGET=arm
 export NDK_PLATFORM=9
 export TARGET_HOST="arm-linux-androideabi"
-export INSTALL_PREFIX="$HOME/androix/usr/"
+export INSTALL_PREFIX="$HOME/androix/usr"
 export PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" 
 export CC=droid-gcc
 export LD=droid-ld
@@ -18,7 +18,7 @@ fi
 
 BUILD_ROOT=$(pwd)
 
-if [[ -e $INSTALL_PREFIX/usr/lib/libncurses.a ]]; then
+ls $INSTALL_PREFIX/lib/libncurses.a 2>/dev/null 1>/dev/null || (
  [[ -f ncurses-5.9.tar.gz ]] || wget http://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz
  [[ -d ncurses-5.9 ]] || tar xvzf ncurses-5.9.tar.gz
  [[ -d ncurses ]] && rm -rf ncurses
@@ -28,7 +28,7 @@ if [[ -e $INSTALL_PREFIX/usr/lib/libncurses.a ]]; then
  sed -i -e "s/#define HAVE_LOCALE_H 1/#define HAVE_LOCALE_H 0/g" include/ncurses_cfg.h 
  make -k install || exit
  cd $BUILD_ROOT
-fi
+)
 
 repo init -u https://github.com/ClashTheBunny/androix.git
 repo sync
