@@ -30,6 +30,9 @@ if [[ -e $INSTALL_PREFIX/usr/lib/libncurses.a ]]; then
  cd $BUILD_ROOT
 fi
 
+repo init -u https://github.com/ClashTheBunny/androix.git
+repo sync
+
 cat .repo/manifest.xml | grep -v "androix-xserver" | grep path | grep -v "\!--"  | sed -e 's/.*path="//g' -e 's/" remote.*//g' | uniq | while read dir
 do
 	cd $dir
