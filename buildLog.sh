@@ -1,5 +1,5 @@
 #!/bin/bash
-export NDK_ROOT=/opt/android-ndk-r7/
+export NDK_ROOT=$(dirname $(which ndk-build))
 export NDK_TARGET=arm
 export NDK_PLATFORM=9
 export TARGET_HOST="arm-linux-androideabi"
