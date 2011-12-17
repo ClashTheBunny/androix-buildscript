@@ -35,11 +35,11 @@ ls $INSTALL_PREFIX/lib/libncurses.a 2>/dev/null 1>/dev/null || (
 repo init -u https://github.com/ClashTheBunny/androix.git
 repo sync
 
-cat .repo/manifest.xml | grep -v "androix-xserver" | grep path | grep -v "\!--"  | sed -e 's/.*path="//g' -e 's/" remote.*//g' | uniq | while read dir
+cat .repo/manifest.xml | grep -v -e "androix-xserver" -e "util/modular" | grep path | grep -v "\!--"  | sed -e 's/.*path="//g' -e 's/" remote.*//g' | uniq | while read dir
 do
 	cd $dir
 	./autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
-	make install || exit
+	make install || echo "Failed to build $dir" >> error.log
 	cd $BUILD_ROOT
 done
 
