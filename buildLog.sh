@@ -39,7 +39,7 @@ cat .repo/manifest.xml | grep path | grep -v "\!--"  | sed -e 's/.*path="//g' -e
 do
 	cd $dir
 	./autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
-	make install || echo "Failed to build $dir" >> error.log
+	make install || echo "Failed to build $dir" >> $BUILD_ROOT/error.log
 	cd $BUILD_ROOT
 done
 
