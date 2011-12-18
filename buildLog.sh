@@ -19,6 +19,7 @@ if [[ "x$(which droid-gcc || echo nope)" == "xnope" ]]; then
 fi
 
 BUILD_ROOT=$(pwd)
+BUILD_LOG=$BUILD_ROOT/build.log_$(date "+%Y-%M-%d-%H-%m")
 
 ls $INSTALL_PREFIX/lib/libncurses.a 2>/dev/null 1>/dev/null || (
  [[ -f ncurses-5.9.tar.gz ]] || wget http://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz
@@ -32,14 +33,19 @@ ls $INSTALL_PREFIX/lib/libncurses.a 2>/dev/null 1>/dev/null || (
  cd $BUILD_ROOT
 )
 
-repo init -u https://github.com/ClashTheBunny/androix.git
-repo sync
+# repo init -u https://github.com/ClashTheBunny/androix.git
+# repo sync
 
 cat .repo/manifest.xml | grep path | grep -v "\!--"  | sed -e 's/.*path="//g' -e 's/" remote.*//g' | uniq | while read dir
 do
 	cd $dir
 	./autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
-	make install || echo "Failed to build $dir" >> $BUILD_ROOT/error.log
+	if make install
+	then
+		echo "Success: $dir" >> $BUILD_LOG
+	else
+		echo "Failure: $dir" >> $BUILD_LOG
+	fi
 	cd $BUILD_ROOT
 done
 
