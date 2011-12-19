@@ -2,7 +2,7 @@
 export DROID_WRAPPER_DEBUG=true
 export NDK_ROOT=$(dirname $(which ndk-build))
 export NDK_TARGET=arm
-export NDK_PLATFORM=9
+export NDK_PLATFORM=8
 export TARGET_HOST="arm-linux-androideabi"
 export INSTALL_PREFIX="$HOME/androix/usr"
 export CC=droid-gcc
@@ -48,7 +48,14 @@ do
 	then
 		echo "Success: $dir" >> $BUILD_LOG
 	else
-		echo "Failure: $dir" >> $BUILD_LOG
+		CC="$NDK_ROOT/toolchains/$TARGET_HOST-4.4.3/prebuilt/linux-x86/bin/$TARGET_HOST-gcc" CFLAGS="-W -Wall -O0 -g3 -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I$INSTALL_PREFIX/include -I$NDK_ROOT/platforms/android-$NDK_PLATFORM/arch-arm/usr/include -nostdlib -fPIC -DANDROID -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,$NDK_ROOT/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/$TARGET_HOST/lib/ldscripts/armelf_linux_eabi.x -Wl,-rpath-link=$INSTALL_PREFIX/lib -L$INSTALL_PREFIX/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" ./autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
+		if make install
+		then
+			echo "Success: $dir" >> $BUILD_LOG
+		else
+			echo "Failure: $dir" >> $BUILD_LOG
+		fi
+			
 	fi
 	cd $BUILD_ROOT
 done
