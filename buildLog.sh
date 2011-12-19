@@ -48,7 +48,12 @@ do
 	then
 		echo "Success: $dir" >> $BUILD_LOG
 	else
-		CC="$NDK_ROOT/toolchains/$TARGET_HOST-4.4.3/prebuilt/linux-x86/bin/$TARGET_HOST-gcc" CFLAGS="-W -Wall -O0 -g3 -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I$INSTALL_PREFIX/include -I$NDK_ROOT/platforms/android-$NDK_PLATFORM/arch-arm/usr/include -nostdlib -fPIC -DANDROID -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,$NDK_ROOT/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/$TARGET_HOST/lib/ldscripts/armelf_linux_eabi.x -Wl,-rpath-link=$INSTALL_PREFIX/lib -L$INSTALL_PREFIX/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" ./autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
+		cd $BUILD_ROOT
+		rm -rf $dir
+		repo sync
+		cd $dir
+                #ACLOCAL="aclocal -I $INSTALL_PREFIX/share/aclocal" CC="$NDK_ROOT/toolchains/$TARGET_HOST-4.4.3/prebuilt/linux-x86/bin/$TARGET_HOST-gcc" CFLAGS="-W -Wall -O0 -g3 -Wstrict-prototypes -pipe -std=gnu99 -ffunction-sections -fno-short-enums -march=armv5te -mtune=xscale -msoft-float -fomit-frame-pointer  -Wno-pointer-sign -Wno-override-init -I$INSTALL_PREFIX/include -I$NDK_ROOT/platforms/android-$NDK_PLATFORM/arch-arm/usr/include -nostdlib -fPIC -DANDROID -Dbionic -Dlinux -D__arm__ -DDEBUG" LDFLAGS="-Wl,-T,$NDK_ROOT/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/$TARGET_HOST/lib/ldscripts/armelf_linux_eabi.x -Wl,-rpath-link=$INSTALL_PREFIX/lib -L$INSTALL_PREFIX/lib -nostdlib -lc -lm -ldl -nostdlib -Wl,-dynamic-linker,/system/bin/linker -Wl,-z-nocopyreloc" ./autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
+                ACLOCAL="aclocal -I $INSTALL_PREFIX/share/aclocal" ./autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 		if make install
 		then
 			echo "Success: $dir" >> $BUILD_LOG
