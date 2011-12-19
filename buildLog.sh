@@ -1,5 +1,5 @@
 #!/bin/bash
-export DROID_DEBUG=true
+export DROID_WRAPPER_DEBUG=true
 export NDK_ROOT=$(dirname $(which ndk-build))
 export NDK_TARGET=arm
 export NDK_PLATFORM=9
