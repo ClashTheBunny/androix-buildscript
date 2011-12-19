@@ -1,4 +1,5 @@
 #!/bin/bash
+export DROID_DEBUG=true
 export NDK_ROOT=$(dirname $(which ndk-build))
 export NDK_TARGET=arm
 export NDK_PLATFORM=9
@@ -9,7 +10,12 @@ export LD=droid-ld
 export RANLIB=droid-ranlib
 export CFLAGS="-I$INSTALL_PREFIX/include"
 export LDFLAGS="-L$INSTALL_PREFIX/lib"
-export PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig" 
+export PKG_CONFIG_PATH=$INSTALL_PREFIX/lib/pkgconfig:$INSTALL_PREFIX/share/pkgconfig
+#export ACLOCAL="aclocal -I $INSTALL_PREFIX/share/aclocal"
+export LD_LIBRARY_PATH=$INSTALL_PREFIX/lib
+
+BUILD_ROOT=$(pwd)
+BUILD_LOG=$BUILD_ROOT/build.log_$(date "+%Y-%m-%d-%H-%M")
 
 if [[ "x$(which droid-gcc || echo nope)" == "xnope" ]]; then
  git clone https://github.com/ClashTheBunny/droid-wrapper.git
@@ -17,9 +23,6 @@ if [[ "x$(which droid-gcc || echo nope)" == "xnope" ]]; then
  sudo make install
  cd ..
 fi
-
-BUILD_ROOT=$(pwd)
-BUILD_LOG=$BUILD_ROOT/build.log_$(date "+%Y-%M-%d-%H-%m")
 
 ls $INSTALL_PREFIX/lib/libncurses.a 2>/dev/null 1>/dev/null || (
  [[ -f ncurses-5.9.tar.gz ]] || wget http://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz
@@ -33,11 +36,12 @@ ls $INSTALL_PREFIX/lib/libncurses.a 2>/dev/null 1>/dev/null || (
  cd $BUILD_ROOT
 )
 
-# repo init -u https://github.com/ClashTheBunny/androix.git
-# repo sync
+repo init -u https://github.com/ClashTheBunny/androix.git
+repo sync
 
 cat .repo/manifest.xml | grep path | grep -v "\!--"  | sed -e 's/.*path="//g' -e 's/" remote.*//g' | uniq | while read dir
 do
+	echo $dir
 	cd $dir
 	./autogen.sh --host $TARGET_HOST --prefix=$INSTALL_PREFIX
 	if make install
