@@ -4,7 +4,7 @@ export NDK_ROOT=$(dirname $(which ndk-build))
 export NDK_TARGET=arm
 export NDK_PLATFORM=8
 export TARGET_HOST="arm-linux-androideabi"
-export INSTALL_PREFIX="$HOME/androix/usr"
+export INSTALL_PREFIX="$HOME/android/androix/usr"
 export CC=droid-gcc
 export LD=droid-ld
 export RANLIB=droid-ranlib
@@ -36,7 +36,7 @@ ls $INSTALL_PREFIX/lib/libncurses.a 2>/dev/null 1>/dev/null || (
  cd $BUILD_ROOT
 )
 
-repo init -u https://github.com/ClashTheBunny/androix.git
+[ ! -e .repo ] && repo init -u https://github.com/ClashTheBunny/androix.git
 repo sync
 
 cat .repo/manifest.xml | grep path | grep -v "\!--"  | sed -e 's/.*path="//g' -e 's/" remote.*//g' | uniq | while read dir
@@ -70,3 +70,14 @@ cd xserver
 make
 cd hw/android
 $NDK_ROOT/ndk-build
+
+#copy these files and edit them
+#/opt/android-ndk-r8/platforms/android-14/arch-arm/usr/include/strings.h
+#/opt/android-ndk-r8/platforms/android-14/arch-arm/usr/include/netinet/in.h
+#/opt/android-ndk-r8/platforms/android-14/arch-arm/usr/include/netinet/ip6.h
+#/opt/android-ndk-r8/platforms/android-14/arch-arm/usr/include/linux/in.h
+#/opt/android-ndk-r8/platforms/android-14/arch-arm/usr/include/linux/ipv6.h
+#../usr/include/netinet/in.h
+#../usr/include/netinet/ipv6.h
+#../usr/include/netinet/ip6.h
+#../usr/include/strings.h
